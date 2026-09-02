@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - Quiz Nihongo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c0c1d, #1a1a2e, #16213e);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Background overlay */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 107, 107, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(78, 205, 196, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(255, 215, 0, 0.04) 0%, transparent 50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ============================================
+           TOMBOL KEMBALI KE HOME
+           ============================================ */
+        .back-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ============================================
+           CONTAINER UTAMA
+           ============================================ */
+        .container {
+            max-width: 550px;
+            width: 90%;
+            padding: 30px;
+            margin: 80px auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           HEADER
+           ============================================ */
+        .donate-header {
+            margin-bottom: 25px;
+        }
+
+        .donate-icon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .donate-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .donate-title .highlight {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .donate-subtitle {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .donate-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+            margin: 12px auto 0;
+            border-radius: 4px;
+        }
+
+        /* ============================================
+           QRIS SECTION
+           ============================================ */
+        .qris-wrapper {
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 2px dashed rgba(78, 205, 196, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .qris-wrapper:hover {
+            border-color: rgba(78, 205, 196, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .qris-image {
+            width: 220px;
+            height: 220px;
+            object-fit: contain;
+            border-radius: 12px;
+            margin: 0 auto;
+            display: block;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .qris-label {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 4px 16px;
+            background: rgba(78, 205, 196, 0.1);
+            color: #6bcb77;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 1px solid rgba(78, 205, 196, 0.15);
+            letter-spacing: 1px;
+        }
+
+        /* ============================================
+           TOMBOL DOWNLOAD QRIS
+           ============================================ */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #6bcb77, #4caf50);
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 25px rgba(78, 205, 196, 0.25);
+            width: 100%;
+            max-width: 280px;
+            margin: 10px auto 0;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .download-btn:hover::before {
+            opacity: 1;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 40px rgba(78, 205, 196, 0.4);
+        }
+
+        .download-btn:active {
+            transform: scale(0.97);
+        }
+
+        .download-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* ============================================
+           TOMBOL KEMBALI KE HOME (DI BAWAH)
+           ============================================ */
+        .btn-home {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 35px;
+            background: rgba(255, 255, 255, 0.06);
+            color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 280px;
+            margin: 10px auto 0;
+        }
+
+        .btn-home:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer-text {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.7rem;
+            margin-top: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            .back-home {
+                top: 15px;
+                left: 15px;
+                padding: 10px 18px;
+                font-size: 0.8rem;
+            }
+
+            .container {
+                padding: 25px 20px;
+                margin: 70px auto;
+            }
+
+            .donate-title {
+                font-size: 1.6rem;
+            }
+
+            .qris-image {
+                width: 180px;
+                height: 180px;
+            }
+
+            .download-btn {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+                max-width: 240px;
+            }
+
+            .btn-home {
+                padding: 12px 28px;
+                font-size: 0.9rem;
+                max-width: 240px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .back-home {
+                top: 12px;
+                left: 12px;
+                padding: 8px 14px;
+                font-size: 0.7rem;
+            }
+
+            .container {
+                padding: 20px 15px;
+                margin: 60px auto;
+                border-radius: 18px;
+            }
+
+            .donate-icon {
+                font-size: 2.8rem;
+            }
+
+            .donate-title {
+                font-size: 1.4rem;
+            }
+
+            .donate-subtitle {
+                font-size: 0.8rem;
+            }
+
+            .qris-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .qris-wrapper {
+                padding: 15px;
+            }
+
+            .download-btn {
+                padding: 10px 24px;
+                font-size: 0.8rem;
+                max-width: 200px;
+            }
+
+            .btn-home {
+                padding: 10px 20px;
+                font-size: 0.8rem;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Overlay -->
+    <div class="bg-overlay"></div>
+
+    <!-- ========== TOMBOL KEMBALI KE HOME ========== -->
+    <a href="index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i> Kembali ke Home
+    </a>
+
+    <!-- ========== CONTAINER UTAMA ========== -->
+    <div class="container">
+
+        <!-- Header -->
+        <div class="donate-header">
+            <span class="donate-icon">💚</span>
+            <h1 class="donate-title">Donate <span class="highlight">dong bang</span></h1>
+            <p class="donate-subtitle">Dukung saya agar terus berkarya ✨</p>
+            <div class="donate-line"></div>
+        </div>
+
+        <!-- QRIS -->
+        <div class="qris-wrapper">
+            <!-- Ganti src dengan gambar QRIS Anda -->
+            <img id="qrisImage" class="qris-image" src="qrisdana.jpg" alt="QRIS Dana">
+            <br>
+            <span class="qris-label">💳 Scan QRIS - All Payment</span>
+        </div>
+
+        <!-- Tombol Download QRIS -->
+        <button class="download-btn" onclick="downloadQRIS()">
+            <i class="fas fa-download"></i> Download QRIS
+        </button>
+
+        <!-- Tombol Kembali ke Home -->
+        <a href="index.html" class="btn-home">
+            <i class="fas fa-home"></i> Kembali ke Home
+        </a>
+
+        <!-- Footer -->
+        <p class="footer-text">Terima kasih atas dukungannya 🙏</p>
+    </div>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ============================================
+        // DOWNLOAD QRIS
+        // ============================================
+        function downloadQRIS() {
+            const qrisImage = document.getElementById('qrisImage');
+
+            if (!qrisImage) {
+                alert('Gambar QRIS tidak ditemukan!');
+                return;
+            }
+
+            // Buat canvas
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const size = 300;
+            canvas.width = size;
+            canvas.height = size;
+
+            // Background
+            const gradient = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size);
+            gradient.addColorStop(0, '#1a1a3a');
+            gradient.addColorStop(0.8, '#0c0c1d');
+            gradient.addColorStop(1, '#0a0a15');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+
+            // Border
+            ctx.strokeStyle = 'rgba(78, 205, 196, 0.3)';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([10, 8]);
+            ctx.strokeRect(15, 15, size - 30, size - 30);
+            ctx.setLineDash([]);
+
+            // Fungsi draw QRIS
+            function drawQRIS(img) {
+                const qrisSize = 200;
+                const x = (size - qrisSize) / 2;
+                const y = (size - qrisSize) / 2 - 10;
+                ctx.drawImage(img, x, y, qrisSize, qrisSize);
+
+                ctx.fillStyle = 'rgba(78, 205, 196, 0.6)';
+                ctx.font = 'bold 14px Segoe UI, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+                ctx.fillText('✦ SCAN QRIS - DANA ✦', size / 2, size - 18);
+
+                const link = document.createElement('a');
+                link.download = 'QRIS_DANA_Donate.png';
+                link.href = canvas.toDataURL('image/png');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            // Cek apakah gambar sudah di-load
+            if (qrisImage.complete && qrisImage.naturalWidth !== 0) {
+                try {
+                    drawQRIS(qrisImage);
+                } catch (e) {
+                    fallbackQRIS();
+                }
+            } else {
+                const img = new Image();
+                img.crossOrigin = 'Anonymous';
+                img.onload = function() {
+                    try {
+                        drawQRIS(img);
+                    } catch (e) {
+                        fallbackQRIS();
+                    }
+                };
+                img.onerror = function() {
+                    fallbackQRIS();
+                };
+                img.src = qrisImage.src;
+            }
+
+            // Fallback
+            function fallbackQRIS() {
+                const qrisSize = 200;
+                const x = (size - qrisSize) / 2;
+                const y = (size - qrisSize) / 2 - 10;
+
+                ctx.fillStyle = '#1a1a3a';
+                ctx.shadowColor = 'rgba(78, 205, 196, 0.2)';
+                ctx.shadowBlur = 20;
+                ctx.fillRect(x, y, qrisSize, qrisSize);
+                ctx.shadowBlur = 0;
+
+                ctx.fillStyle = 'rgba(78, 205, 196, 0.4)';
+                ctx.font = '70px Font Awesome 6 Free';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText('', size / 2, size / 2 - 5);
+
+                ctx.fillStyle = 'rgba(255,255,255,0.3)';
+                ctx.font = '16px Segoe UI, sans-serif';
+                ctx.textBaseline = 'bottom';
+                ctx.fillText('QRIS DANA', size / 2, size / 2 + 50);
+
+                ctx.fillStyle = 'rgba(78, 205, 196, 0.6)';
+                ctx.font = 'bold 14px Segoe UI, sans-serif';
+                ctx.textBaseline = 'bottom';
+                ctx.fillText('✦ SCAN QRIS - DANA ✦', size / 2, size - 18);
+
+                const link = document.createElement('a');
+                link.download = 'QRIS_DANA_Donate.png';
+                link.href = canvas.toDataURL('image/png');
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                alert('⚠️ Gambar QRIS tidak ditemukan. Yang di-download adalah placeholder.\n\nSilakan ganti gambar QRIS dengan file asli Anda.');
+            }
+        }
+
+        console.log('💚 Halaman Donate siap!');
+        console.log('📸 Ganti qrisdana.jpg dengan QRIS asli Anda');
+        console.log('🔽 Klik Download QRIS untuk menyimpan');
+    </script>
+
+</body>
+</html>

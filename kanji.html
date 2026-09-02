@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanji JFT</title>
+    <link rel="stylesheet" href="kanji.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <!-- Overlay untuk efek background -->
+    <div class="bg-overlay"></div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <span class="header-badge">🇯🇵 漢字</span>
+            <h1>Belajar <span class="highlight">Kanji JFT</span></h1>
+            <p class="subtitle">✨ Kuasai 400+ kanji JFT dengan mudah ✨</p>
+            <div class="header-line"></div>
+        </div>
+    </header>
+
+    <!-- Konten -->
+    <div class="content-wrapper">
+        <div class="container-card">
+            <!-- Kontrol -->
+            <div class="controls">
+                <input type="text" id="searchInput" placeholder="🔍 Cari kanji, hiragana, romaji, atau arti...">
+                <button id="shuffleBtn">🎲 Acak Urutan</button>
+            </div>
+
+            <!-- Statistik -->
+            <div class="stats-bar">
+                <div class="stat-item-modern">
+                    <span class="stat-number" id="totalKanji">0</span>
+                    <span class="stat-label">Total Kanji</span>
+                </div>
+                <div class="stat-item-modern">
+                    <span class="stat-number" id="tampilKanji">0</span>
+                    <span class="stat-label">Ditampilkan</span>
+                </div>
+                <div class="stat-item-modern">
+                    <span class="stat-number" id="levelDisplay">JFT</span>
+                    <span class="stat-label">Level</span>
+                </div>
+            </div>
+
+            <!-- Grid Kanji -->
+            <div class="kanji-grid" id="kanjiGrid"></div>
+        </div>
+    </div>
+
+    <!-- Tombol Navigasi -->
+    <a href="./home-kanji.html" class="home-button">← Menu kanji</a>
+    <a href="./index.html" class="home-button-left">🏠Menu utama</a>
+
+    <!-- ========== TOMBOL SPEAKER ========== -->
+    <button class="speaker-btn muted" id="speakerBtn" title="Play/Pause Musik">
+        <i class="fas fa-volume-mute"></i>
+    </button>
+
+    <!-- ========== AUDIO ELEMENT ========== -->
+    <audio id="audioPlayer" loop style="display:none;"></audio>
+
+    <script src="kanji.js"></script>
+</body>
+</html>

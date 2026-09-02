@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak Hiragana & Katakana</title>
+    <link rel="stylesheet" href="tebak-hirakana.css">
+</head>
+<body>
+    <!-- Background Overlay -->
+    <div class="bg-overlay"></div>
+
+    <!-- Start Screen -->
+    <div class="start-screen" id="start-screen">
+        <div class="start-content">
+            <div class="start-badge">🎌 BELAJAR BAHASA JEPANG</div>
+            <h1>Tebak <span class="highlight">Hiragana</span> & <span class="highlight">Katakana</span></h1>
+            <p>Uji pengetahuan huruf Jepangmu!</p>
+            <div class="start-line"></div>
+            
+            <button class="start-button" id="start-button">
+                <span>MULAI BERMAIN</span>
+                <span class="btn-icon">🚀</span>
+            </button>
+
+            <!-- Tombol Navigasi di Start Screen -->
+            <div class="start-nav-buttons">
+                <a href="index.html" class="start-nav-button" id="btn-start-home">
+                    <span>🏠</span>
+                    <span>Menu utama</span>
+                </a>
+                <a href="home.html" class="start-nav-button" id="btn-start-hirakana">
+                    <span>←</span>
+                    <span>Menu hirakana</span>
+                </a>
+            </div>
+
+            <div class="start-stats">
+                <div class="stat-item">
+                    <span class="stat-number">107</span>
+                    <span class="stat-label">KARAKTER</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">NYAWA</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">10</span>
+                    <span class="stat-label">DETIK</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div class="container" id="game-container">
+        <!-- Game Header -->
+        <div class="game-header">
+            <div class="game-header-top">
+                <span class="game-badge">🎌 HIRAGANA & KATAKANA</span>
+                <span class="player-info">
+                    <span id="display-name">👤 Pemain</span>
+                </span>
+            </div>
+            <h1>Tebak <span class="highlight">Huruf Jepang</span></h1>
+            <div class="header-line"></div>
+        </div>
+
+        <!-- Timer Section -->
+        <div class="timer-section">
+            <div class="timer-container">
+                <span class="timer-icon">⏱️</span>
+                <span id="timer">10</span>
+                <span class="timer-label">detik</span>
+            </div>
+            <div class="healing-timer" id="healing-timer" style="display:none;">
+                <span class="healing-icon">💚</span>
+                <span id="healing-count">60</span>
+                <span class="healing-label">detik pemulihan</span>
+            </div>
+        </div>
+
+        <!-- Character Display -->
+        <div class="character-container" id="character-display">あ</div>
+
+        <!-- Options -->
+        <div class="options" id="options-container"></div>
+
+        <!-- Result -->
+        <div class="result" id="result"></div>
+
+        <!-- Lives -->
+        <div class="lives" id="lives-container">
+            <span>❤️</span><span>❤️</span><span>❤️</span><span>❤️</span><span>❤️</span>
+        </div>
+
+        <!-- Score Container -->
+        <div class="score-container">
+            <div class="score-item">
+                <span class="score-label">EXP</span>
+                <span class="score-value" id="exp">0</span>
+            </div>
+            <div class="score-divider"></div>
+            <div class="score-item">
+                <span class="score-label">LEVEL</span>
+                <span class="score-value" id="level">1</span>
+            </div>
+            <div class="score-divider"></div>
+            <div class="score-item">
+                <span class="score-label">BENAR</span>
+                <span class="score-value" id="correct">0</span>
+            </div>
+        </div>
+
+        <!-- Restart Button -->
+        <button id="restart-button">
+            <span class="btn-icon">🔄</span>
+            <span>RESTART</span>
+        </button>
+
+        <!-- Home Buttons -->
+        <div class="home-buttons">
+            <!-- Tombol ke Home Screen (index.html) -->
+            <a href="index.html" class="home-button-left" id="btn-home-index">
+                <span>🏠</span>
+                <span>Menu utama</span>
+            </a>
+            <!-- Tombol ke Home Hirakana (home.html) -->
+            <a href="home.html" class="home-button" id="btn-home-hirakana">
+                <span>←</span>
+                <span>Menu hirakana</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification"></div>
+
+    <!-- Script -->
+    <script src="tebak-hirakana.js"></script>
+</body>
+</html>

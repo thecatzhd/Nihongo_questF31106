@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kosakata Jepang</title>
+    <link rel="stylesheet" href="kotoba.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ============================================
+           TOMBOL SPEAKER - BULAT KECIL (FLOATING)
+           ============================================ */
+        .speaker-btn {
+            position: fixed;
+            bottom: 95px;
+            right: 30px;
+            z-index: 1000;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ff6b6b;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .speaker-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: scale(1.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .speaker-btn:active {
+            transform: scale(0.95);
+        }
+
+        .speaker-btn.muted {
+            color: #ff6b6b;
+            border-color: rgba(255, 107, 107, 0.2);
+        }
+
+        .speaker-btn.playing {
+            color: #6bcb77;
+            border-color: rgba(107, 203, 119, 0.3);
+            box-shadow: 0 8px 30px rgba(107, 203, 119, 0.15);
+        }
+
+        /* ============================================
+           SESUAIKAN DENGAN TOMBOL NAVIGASI
+           ============================================ */
+        .home-button {
+            bottom: 30px !important;
+            right: 30px !important;
+        }
+
+        .home-button-left {
+            bottom: 30px !important;
+            left: 30px !important;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .speaker-btn {
+                bottom: 80px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+            }
+
+            .home-button {
+                bottom: 20px !important;
+                right: 20px !important;
+                padding: 6px 14px !important;
+                font-size: 10px !important;
+            }
+
+            .home-button-left {
+                bottom: 20px !important;
+                left: 20px !important;
+                padding: 6px 14px !important;
+                font-size: 10px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .speaker-btn {
+                bottom: 85px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 1.2rem;
+            }
+
+            .home-button {
+                bottom: 20px !important;
+                right: 20px !important;
+            }
+
+            .home-button-left {
+                bottom: 20px !important;
+                left: 20px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay untuk efek background -->
+    <div class="bg-overlay"></div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-content">
+            <span class="header-badge">📚 日本語</span>
+            <h1>Hapalan <span class="highlight">Kosakata</span></h1>
+            <p class="subtitle">✨ Kuasai kosakata Jepang dengan mudah ✨</p>
+            <div class="header-line"></div>
+        </div>
+    </header>
+
+    <!-- Konten -->
+    <div class="content-wrapper">
+        <div class="container-card">
+            <!-- Kontrol -->
+            <div class="controls">
+                <input type="text" id="searchInput" placeholder="🔍 Cari kata atau arti dalam Bahasa Indonesia...">
+                <button id="shuffleBtn">🎲 Acak Urutan</button>
+            </div>
+
+            <!-- Statistik -->
+            <div class="stats-bar">
+                <div class="stat-item-modern">
+                    <span class="stat-number" id="totalKata">0</span>
+                    <span class="stat-label">Total Kosakata</span>
+                </div>
+                <div class="stat-item-modern">
+                    <span class="stat-number" id="tampilKata">0</span>
+                    <span class="stat-label">Ditampilkan</span>
+                </div>
+            </div>
+
+            <!-- Tabel -->
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Hiragana</th>
+                            <th>Arti Indonesia</th>
+                        </tr>
+                    </thead>
+                    <tbody id="kotobaList"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tombol Navigasi -->
+    <a href="./home-kotoba.html" class="home-button">← Menu kotoba</a>
+    <a href="./index.html" class="home-button-left">🏠Menu utama</a>
+
+    <!-- ========== TOMBOL SPEAKER ========== -->
+    <button class="speaker-btn muted" id="speakerBtn" title="Play/Pause Musik">
+        <i class="fas fa-volume-mute"></i>
+    </button>
+
+    <!-- ========== AUDIO ELEMENT ========== -->
+    <audio id="audioPlayer" loop style="display:none;"></audio>
+
+    <script src="kotoba.js"></script>
+    <script>
+        // ============================================
+        // MUSIK PLAYER - SISTEM SAMA DENGAN INDEX & HIRAKANA
+        // ============================================
+        const audio = document.getElementById('audioPlayer');
+        const speakerBtn = document.getElementById('speakerBtn');
+
+        // Ganti dengan file musik Anda
+        const songFile = "seikai.mp3";
+
+        let isPlaying = false;
+        let audioStarted = false;
+
+        // Set lagu
+        audio.src = songFile;
+        audio.loop = true;
+
+        // Fungsi mulai audio (pertama kali)
+        function startAudio() {
+            if (audioStarted) return;
+            
+            audio.play().then(() => {
+                isPlaying = true;
+                audioStarted = true;
+                speakerBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                speakerBtn.classList.remove('muted');
+                speakerBtn.classList.add('playing');
+                console.log('🎵 Musik mulai diputar!');
+            }).catch(e => {
+                console.log('⏳ Auto play di-block, menunggu interaksi user...');
+            });
+        }
+
+        // Fungsi toggle play/pause (ON/OFF)
+        function togglePlayPause() {
+            if (!audioStarted) {
+                startAudio();
+                return;
+            }
+
+            if (isPlaying) {
+                // MATIKAN MUSIK (PAUSE)
+                audio.pause();
+                isPlaying = false;
+                speakerBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                speakerBtn.classList.remove('playing');
+                speakerBtn.classList.add('muted');
+            } else {
+                // NYALAKAN MUSIK (PLAY)
+                audio.play().catch(e => console.log('Error play:', e));
+                isPlaying = true;
+                speakerBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                speakerBtn.classList.add('playing');
+                speakerBtn.classList.remove('muted');
+            }
+        }
+
+        // ============================================
+        // EVENT LISTENERS
+        // ============================================
+
+        // Saat halaman dimuat, speaker merah dan coba play
+        window.addEventListener('load', () => {
+            speakerBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            speakerBtn.classList.remove('playing');
+            speakerBtn.classList.add('muted');
+            
+            // Coba play (mungkin di-block)
+            startAudio();
+        });
+
+        // Klik pertama di mana saja akan memulai musik
+        document.addEventListener('click', function firstClick() {
+            if (!audioStarted) {
+                startAudio();
+                document.removeEventListener('click', firstClick);
+            }
+        });
+
+        // Klik tombol speaker
+        speakerBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            togglePlayPause();
+        });
+
+        console.log('🎵 Kotoba - Musik latar siap!');
+        console.log(`📀 File: ${songFile}`);
+        console.log('🔊 Klik tombol speaker untuk ON/OFF musik');
+    </script>
+</body>
+</html>

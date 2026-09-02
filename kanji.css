@@ -1,0 +1,736 @@
+/* ========================================
+   RESET & BASE
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0c0c1d, #1a1a2e, #16213e);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    color: #ffffff;
+}
+
+/* Background overlay */
+.bg-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(255, 107, 107, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(78, 205, 196, 0.04) 0%, transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.main-header {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 30px 20px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.header-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffd93d;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 5px 18px;
+    border-radius: 30px;
+    letter-spacing: 2px;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    margin-bottom: 10px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.main-header h1 {
+    color: #ffffff;
+    font-size: 2.8rem;
+    font-weight: 800;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    margin-bottom: 8px;
+}
+
+.main-header h1 .highlight {
+    background: linear-gradient(135deg, #ffd93d, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.main-header .subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+.header-line {
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ffd93d, #ff6b6b, transparent);
+    margin: 15px auto 0;
+    border-radius: 4px;
+}
+
+/* ============================================
+   CONTENT WRAPPER
+   ============================================ */
+.content-wrapper {
+    padding: 30px 20px 100px;
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ============================================
+   CARD CONTAINER
+   ============================================ */
+.container-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.4s ease;
+}
+
+.container-card:hover {
+    border-color: rgba(255, 215, 0, 0.15);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================
+   KONTROL
+   ============================================ */
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.controls input {
+    flex: 1;
+    min-width: 200px;
+    padding: 14px 20px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.controls input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.controls input:focus {
+    border-color: rgba(255, 215, 0, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.05);
+}
+
+.controls input:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.controls button {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ffd93d, #f5a623);
+    color: #1a1a2e;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+    white-space: nowrap;
+}
+
+.controls button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.3);
+}
+
+.controls button:active {
+    transform: translateY(0);
+}
+
+/* ============================================
+   STATISTIK
+   ============================================ */
+.stats-bar {
+    display: flex;
+    gap: 30px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    flex-wrap: wrap;
+}
+
+.stat-item-modern {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+}
+
+.stat-item-modern .stat-number {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, #ffd93d, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-item-modern .stat-label {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ============================================
+   GRID KANJI - CARD VIEW (KE SAMPING)
+   ============================================ */
+.kanji-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.kanji-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 14px;
+    padding: 18px 14px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: default;
+    animation: fadeInUp 0.3s ease forwards;
+}
+
+.kanji-card:hover {
+    background: rgba(255, 215, 0, 0.06);
+    border-color: rgba(255, 215, 0, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.kanji-card .kanji-char {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #ffd93d;
+    display: block;
+    line-height: 1.3;
+    letter-spacing: 2px;
+}
+
+.kanji-card .kanji-hiragana {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    display: block;
+    margin-top: 2px;
+}
+
+.kanji-card .kanji-romaji {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+    display: block;
+    font-style: italic;
+    margin-top: 2px;
+}
+
+.kanji-card .kanji-meaning {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    display: block;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.kanji-card .kanji-number {
+    font-size: 0.55rem;
+    color: rgba(255, 255, 255, 0.15);
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+/* Warna bergantian untuk card */
+.kanji-card:nth-child(even) {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.kanji-card:nth-child(even):hover {
+    background: rgba(255, 215, 0, 0.06);
+}
+
+/* ============================================
+   TOMBOL SPEAKER
+   ============================================ */
+.speaker-btn {
+    position: fixed;
+    bottom: 95px;
+    right: 30px;
+    z-index: 1000;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ff6b6b;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.speaker-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.speaker-btn:active {
+    transform: scale(0.95);
+}
+
+.speaker-btn.muted {
+    color: #ff6b6b;
+    border-color: rgba(255, 107, 107, 0.2);
+}
+
+.speaker-btn.playing {
+    color: #6bcb77;
+    border-color: rgba(107, 203, 119, 0.3);
+    box-shadow: 0 8px 30px rgba(107, 203, 119, 0.15);
+}
+
+/* ============================================
+   TOMBOL NAVIGASI
+   ============================================ */
+.home-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 1000;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.home-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.home-button-left {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    padding: 12px 24px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    z-index: 1000;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.4s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.home-button-left:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Delay animasi untuk setiap card */
+.kanji-card:nth-child(1) { animation-delay: 0.02s; }
+.kanji-card:nth-child(2) { animation-delay: 0.04s; }
+.kanji-card:nth-child(3) { animation-delay: 0.06s; }
+.kanji-card:nth-child(4) { animation-delay: 0.08s; }
+.kanji-card:nth-child(5) { animation-delay: 0.10s; }
+.kanji-card:nth-child(6) { animation-delay: 0.12s; }
+.kanji-card:nth-child(7) { animation-delay: 0.14s; }
+.kanji-card:nth-child(8) { animation-delay: 0.16s; }
+.kanji-card:nth-child(9) { animation-delay: 0.18s; }
+.kanji-card:nth-child(10) { animation-delay: 0.20s; }
+.kanji-card:nth-child(11) { animation-delay: 0.22s; }
+.kanji-card:nth-child(12) { animation-delay: 0.24s; }
+.kanji-card:nth-child(13) { animation-delay: 0.26s; }
+.kanji-card:nth-child(14) { animation-delay: 0.28s; }
+.kanji-card:nth-child(15) { animation-delay: 0.30s; }
+.kanji-card:nth-child(16) { animation-delay: 0.32s; }
+.kanji-card:nth-child(17) { animation-delay: 0.34s; }
+.kanji-card:nth-child(18) { animation-delay: 0.36s; }
+.kanji-card:nth-child(19) { animation-delay: 0.38s; }
+.kanji-card:nth-child(20) { animation-delay: 0.40s; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .kanji-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 12px;
+    }
+
+    .kanji-card .kanji-char {
+        font-size: 2.4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header h1 {
+        font-size: 2rem;
+    }
+
+    .main-header .subtitle {
+        font-size: 0.85rem;
+    }
+
+    .content-wrapper {
+        padding: 20px 15px 90px;
+    }
+
+    .container-card {
+        padding: 20px;
+        border-radius: 16px;
+    }
+
+    .controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .controls input {
+        padding: 12px 16px;
+        font-size: 0.9rem;
+    }
+
+    .controls button {
+        padding: 12px 20px;
+        font-size: 0.85rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .stats-bar {
+        gap: 15px;
+        padding: 12px 16px;
+        font-size: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .kanji-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+    }
+
+    .kanji-card {
+        padding: 14px 10px;
+    }
+
+    .kanji-card .kanji-char {
+        font-size: 2rem;
+    }
+
+    .kanji-card .kanji-hiragana {
+        font-size: 0.8rem;
+    }
+
+    .kanji-card .kanji-romaji {
+        font-size: 0.6rem;
+    }
+
+    .kanji-card .kanji-meaning {
+        font-size: 0.65rem;
+    }
+
+    .home-button, .home-button-left {
+        padding: 8px 16px;
+        font-size: 11px;
+        bottom: 20px;
+    }
+
+    .home-button {
+        right: 20px;
+    }
+
+    .home-button-left {
+        left: 20px;
+    }
+
+    .speaker-btn {
+        bottom: 85px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header {
+        padding: 20px 15px 15px;
+    }
+
+    .main-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .header-badge {
+        font-size: 0.6rem;
+        padding: 4px 14px;
+    }
+
+    .container-card {
+        padding: 15px;
+        border-radius: 14px;
+    }
+
+    .controls input {
+        padding: 10px 14px;
+        font-size: 0.8rem;
+        min-width: 150px;
+    }
+
+    .controls button {
+        padding: 10px 16px;
+        font-size: 0.8rem;
+    }
+
+    .stats-bar {
+        gap: 10px;
+        padding: 10px 12px;
+        font-size: 0.7rem;
+    }
+
+    .kanji-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 8px;
+    }
+
+    .kanji-card {
+        padding: 10px 8px;
+        border-radius: 10px;
+    }
+
+    .kanji-card .kanji-char {
+        font-size: 1.6rem;
+    }
+
+    .kanji-card .kanji-hiragana {
+        font-size: 0.7rem;
+    }
+
+    .kanji-card .kanji-romaji {
+        font-size: 0.55rem;
+    }
+
+    .kanji-card .kanji-meaning {
+        font-size: 0.55rem;
+        margin-top: 4px;
+        padding-top: 4px;
+    }
+
+    .kanji-card .kanji-number {
+        font-size: 0.45rem;
+    }
+
+    .home-button, .home-button-left {
+        padding: 6px 14px;
+        font-size: 10px;
+        bottom: 15px;
+        border-radius: 30px;
+    }
+
+    .home-button {
+        right: 15px;
+    }
+
+    .home-button-left {
+        left: 15px;
+    }
+
+    .speaker-btn {
+        bottom: 80px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .main-header h1 {
+        font-size: 1.2rem;
+    }
+
+    .kanji-grid {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 6px;
+    }
+
+    .kanji-card .kanji-char {
+        font-size: 1.3rem;
+    }
+
+    .kanji-card .kanji-hiragana {
+        font-size: 0.6rem;
+    }
+
+    .kanji-card .kanji-romaji {
+        font-size: 0.5rem;
+    }
+
+    .kanji-card .kanji-meaning {
+        font-size: 0.5rem;
+    }
+
+    .stats-bar {
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-start;
+    }
+}
+
+/* Landscape mode */
+@media (max-height: 600px) and (orientation: landscape) {
+    .main-header {
+        padding: 15px 20px 10px;
+    }
+
+    .main-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .main-header .subtitle {
+        font-size: 0.8rem;
+    }
+
+    .content-wrapper {
+        padding: 15px 15px 70px;
+    }
+
+    .container-card {
+        padding: 15px;
+    }
+
+    .kanji-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 8px;
+    }
+
+    .kanji-card {
+        padding: 10px 8px;
+    }
+
+    .kanji-card .kanji-char {
+        font-size: 1.6rem;
+    }
+
+    .controls input {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+
+    .controls button {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+
+    .home-button, .home-button-left {
+        padding: 5px 12px;
+        font-size: 9px;
+        bottom: 12px;
+    }
+
+    .speaker-btn {
+        bottom: 75px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+}

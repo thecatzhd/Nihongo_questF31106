@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nihongo Quest - Belajar Jepang</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: url('home.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+    }
+
+    /* ============================================
+       SCROLLBAR
+       ============================================ */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #ff6b6b, #ffd93d);
+      border-radius: 10px;
+    }
+
+    /* ============================================
+       HEADER / NAVIGASI
+       ============================================ */
+    .header {
+      width: 100%;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      flex-wrap: wrap;
+      gap: 15px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.2);
+      -webkit-text-fill-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      letter-spacing: 0.5px;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: #ffffff;
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links .donate-link {
+      background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(238, 90, 36, 0.3);
+    }
+
+    .nav-links .donate-link::after {
+      display: none;
+    }
+
+    .nav-links .donate-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(238, 90, 36, 0.4);
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      position: relative;
+      z-index: 1;
+      padding: 40px 20px 20px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255, 107, 107, 0.15);
+      color: #ff6b6b;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 6px 20px;
+      border-radius: 30px;
+      letter-spacing: 2px;
+      border: 1px solid rgba(255, 107, 107, 0.2);
+      margin-bottom: 15px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .hero h1 {
+      color: #ffffff;
+      font-size: 3.5rem;
+      font-weight: 800;
+      text-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto 10px;
+      letter-spacing: 1px;
+      font-weight: 300;
+    }
+
+    .hero-line {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+      margin: 15px auto 20px;
+      border-radius: 4px;
+    }
+
+    /* ============================================
+       JAPAN FACTS SECTION
+       ============================================ */
+    .japan-facts {
+      position: relative;
+      z-index: 1;
+      padding: 20px 20px 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .facts-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      padding: 10px 5px 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .facts-scroll::-webkit-scrollbar {
+      height: 4px;
+    }
+
+    .facts-scroll::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+    }
+
+    .facts-scroll::-webkit-scrollbar-thumb {
+      background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+      border-radius: 10px;
+    }
+
+    .fact-card {
+      flex: 0 0 220px;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 16px;
+      padding: 20px 18px;
+      text-align: center;
+      scroll-snap-align: start;
+      transition: all 0.3s ease;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .fact-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-5px);
+      border-color: rgba(255, 107, 107, 0.15);
+    }
+
+    .fact-card .fact-icon {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .fact-card h4 {
+      color: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .fact-card p {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.75rem;
+      line-height: 1.5;
+    }
+
+    /* ============================================
+       MAIN CONTENT - 3 KOTAK
+       ============================================ */
+    .main-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 20px 20px 100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title {
+      color: #ffffff;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .section-title .highlight {
+      background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .kotak-1, .kotak-2, .kotak-3 {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 40px 35px;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.06);
+      width: 360px;
+      transform: scale(0);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .kotak-1::before, .kotak-2::before, .kotak-3::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff);
+      border-radius: 26px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .kotak-1:hover::before, .kotak-2:hover::before, .kotak-3:hover::before {
+      opacity: 0.4;
+    }
+
+    .kotak-1:hover, .kotak-2:hover, .kotak-3:hover {
+      transform: translateY(-10px) scale(1.02);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* Badge dengan warna berbeda */
+    .badge {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .kotak-1 .badge {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+    }
+
+    .kotak-2 .badge {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      color: #fff;
+    }
+
+    .kotak-3 .badge {
+      background: linear-gradient(135deg, #ffd93d, #f5a623);
+      color: #1a1a2e;
+    }
+
+    .icon {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-weight: 800;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .kotak-1 h2 {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .kotak-2 h2 {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .kotak-3 h2 {
+      background: linear-gradient(135deg, #ffd93d, #f5a623);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .kotak-desc {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .btn-learn {
+      padding: 12px 32px;
+      border: none;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-learn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .btn-learn:hover::before {
+      left: 100%;
+    }
+
+    .kotak-1 .btn-learn {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .kotak-1 .btn-learn:hover {
+      box-shadow: 0 8px 35px rgba(102, 126, 234, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .kotak-2 .btn-learn {
+      background: linear-gradient(135deg, #f093fb, #f5576c);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(245, 87, 108, 0.3);
+    }
+
+    .kotak-2 .btn-learn:hover {
+      box-shadow: 0 8px 35px rgba(245, 87, 108, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .kotak-3 .btn-learn {
+      background: linear-gradient(135deg, #ffd93d, #f5a623);
+      color: #1a1a2e;
+      box-shadow: 0 4px 20px rgba(245, 166, 35, 0.3);
+    }
+
+    .kotak-3 .btn-learn:hover {
+      box-shadow: 0 8px 35px rgba(245, 166, 35, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .btn-learn a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .kotak-3 .btn-learn a {
+      color: #1a1a2e;
+    }
+
+    /* ============================================
+       TOMBOL SPEAKER
+       ============================================ */
+    .speaker-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ff6b6b;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .speaker-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.05);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .speaker-btn:active {
+      transform: scale(0.95);
+    }
+
+    .speaker-btn.muted {
+      color: #ff6b6b;
+      border-color: rgba(255, 107, 107, 0.2);
+    }
+
+    .speaker-btn.playing {
+      color: #6bcb77;
+      border-color: rgba(107, 203, 119, 0.3);
+      box-shadow: 0 8px 30px rgba(107, 203, 119, 0.15);
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      position: relative;
+      z-index: 1;
+      padding: 20px 30px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      margin-top: auto;
+    }
+
+    .footer p {
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .footer .heart {
+      color: #ff6b6b;
+      display: inline-block;
+      animation: heartbeat 1.5s ease-in-out infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+
+    @media (max-width: 1024px) {
+      .container {
+        gap: 30px;
+      }
+
+      .kotak-1, .kotak-2, .kotak-3 {
+        width: 320px;
+        padding: 35px 30px;
+      }
+
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .fact-card {
+        flex: 0 0 190px;
+        min-height: 140px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 12px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 15px;
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .nav-links a {
+        font-size: 0.8rem;
+      }
+
+      .hero {
+        padding: 20px 15px 10px;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 0.9rem;
+      }
+
+      .container {
+        flex-direction: column;
+        padding: 10px;
+        gap: 25px;
+      }
+
+      .kotak-1, .kotak-2, .kotak-3 {
+        width: 100%;
+        max-width: 420px;
+        padding: 30px 25px;
+      }
+
+      .facts-scroll {
+        gap: 15px;
+        padding: 5px 5px 15px;
+      }
+
+      .fact-card {
+        flex: 0 0 170px;
+        min-height: 130px;
+        padding: 15px 14px;
+      }
+
+      .fact-card .fact-icon {
+        font-size: 1.8rem;
+      }
+
+      .speaker-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        font-size: 1.2rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-badge {
+        font-size: 0.6rem;
+        padding: 4px 14px;
+      }
+
+      .kotak-1, .kotak-2, .kotak-3 {
+        padding: 25px 20px;
+        border-radius: 18px;
+      }
+
+      .icon {
+        font-size: 2.8rem;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      .kotak-desc {
+        font-size: 0.8rem;
+      }
+
+      .btn-learn {
+        padding: 10px 24px;
+        font-size: 0.8rem;
+      }
+
+      .fact-card {
+        flex: 0 0 150px;
+        min-height: 120px;
+        padding: 12px 10px;
+      }
+
+      .fact-card h4 {
+        font-size: 0.75rem;
+      }
+
+      .fact-card p {
+        font-size: 0.65rem;
+      }
+
+      .speaker-btn {
+        bottom: 15px;
+        right: 15px;
+        width: 44px;
+        height: 44px;
+        font-size: 1rem;
+      }
+
+      .section-title {
+        font-size: 1.2rem;
+      }
+
+      .footer p {
+        font-size: 0.65rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      .fact-card {
+        flex: 0 0 130px;
+        min-height: 100px;
+        padding: 10px 8px;
+      }
+
+      .fact-card .fact-icon {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Landscape mode */
+    @media (max-height: 600px) and (orientation: landscape) {
+      .hero {
+        padding: 15px 20px 5px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 0.8rem;
+        max-width: 500px;
+      }
+
+      .japan-facts {
+        padding: 10px 20px 15px;
+      }
+
+      .fact-card {
+        flex: 0 0 160px;
+        min-height: 100px;
+        padding: 12px 14px;
+      }
+
+      .main-wrapper {
+        padding: 15px 20px 80px;
+      }
+
+      .container {
+        gap: 20px;
+      }
+
+      .kotak-1, .kotak-2, .kotak-3 {
+        padding: 20px 20px;
+        width: 280px;
+      }
+
+      .icon {
+        font-size: 2.2rem;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER / NAVIGASI ========== -->
+  <header class="header">
+    <span class="logo">Nihongo <span>Quest</span></span>
+    <nav class="nav-links">
+      <a href="index.html" class="active">🏠 Home</a>
+      <a href="profile.html">👤 Pembuat Web</a>
+      <a href="donate.html" class="donate-link">💚 Donate</a>
+    </nav>
+  </header>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero">
+    <span class="hero-badge">🇯🇵 ようこそ</span>
+    <h1>Selamat Datang di <span class="highlight">Nihongo Quest</span></h1>
+    <p>Jelajahi keindahan bahasa dan budaya Jepang bersama kami</p>
+    <div class="hero-line"></div>
+  </section>
+
+  <!-- ========== JAPAN FACTS ========== -->
+  <section class="japan-facts">
+    <div class="facts-scroll">
+      <div class="fact-card">
+        <div class="fact-icon">🗾</div>
+        <h4>4 Musim</h4>
+        <p>Jepang memiliki 4 musim yang indah: Sakura di musim semi, hijau di musim panas, daun merah di musim gugur, dan salju di musim dingin</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🍣</div>
+        <h4>Washoku</h4>
+        <p>Masakan tradisional Jepang (Washoku) diakui UNESCO sebagai warisan budaya takbenda dunia</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">⛩️</div>
+        <h4>Kuil Shinto</h4>
+        <p>Ada lebih dari 80.000 kuil Shinto di seluruh Jepang, dengan Kuil Ise sebagai yang paling suci</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🎌</div>
+        <h4>Kanji</h4>
+        <p>Kanji berasal dari China dan digunakan di Jepang sejak abad ke-5, dengan lebih dari 50.000 karakter total</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">🌸</div>
+        <h4>Hanami</h4>
+        <p>Tradisi menikmati keindahan bunga sakura (hanami) telah ada sejak lebih dari 1000 tahun lalu</p>
+      </div>
+      <div class="fact-card">
+        <div class="fact-icon">⚡</div>
+        <h4>Teknologi</h4>
+        <p>Jepang adalah rumah bagi teknologi tercanggih, dari kereta Shinkansen hingga robot humanoid</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <div class="main-wrapper">
+    <h2 class="section-title">Mulai <span class="highlight">Belajar</span> Sekarang</h2>
+
+    <div class="container">
+      <!-- Kotak 1: Hirakana -->
+      <div class="kotak-1" id="kotak1">
+        <span class="badge">🇯🇵 Belajar</span>
+        <span class="icon">✍️</span>
+        <h2>Hirakana</h2>
+        <p class="kotak-desc">Hirakana adalah aksara dasar Jepang untuk menulis kata-kata asli Jepang. Pelajari 46 karakter dasar dan modifikasinya</p>
+        <button class="btn-learn"><a href="./home.html">Lihat Lebih Lanjut →</a></button>
+      </div>
+
+      <!-- Kotak 2: Kotoba -->
+      <div class="kotak-2" id="kotak2">
+        <span class="badge">🇯🇵 Kosakata</span>
+        <span class="icon">🗣️</span>
+        <h2>Kotoba</h2>
+        <p class="kotak-desc">Kotoba adalah kosakata bahasa Jepang. Kuasai ribuan kata dengan daftar lengkap dan game interaktif yang seru</p>
+        <button class="btn-learn"><a href="./home-kotoba.html">Lihat Lebih Lanjut →</a></button>
+      </div>
+
+      <!-- Kotak 3: Kanji -->
+      <div class="kotak-3" id="kotak3">
+        <span class="badge">🇯🇵 Kanji</span>
+        <span class="icon">🀄</span>
+        <h2>Kanji</h2>
+        <p class="kotak-desc">Kanji adalah aksara Jepang dari China. Pelajari 400+ kanji JFT lengkap dengan cara baca dan arti</p>
+        <button class="btn-learn"><a href="./home-kanji.html">Lihat Lebih Lanjut →</a></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <p>© 2026Fabyan Nihongo Quest | Dibuat dengan <span class="heart">❤️</span> untuk pembelajar Nihongo</p>
+  </footer>
+
+  <!-- ========== TOMBOL SPEAKER ========== -->
+  <button class="speaker-btn muted" id="speakerBtn">
+    <i class="fas fa-volume-mute"></i>
+  </button>
+
+  <audio id="audioPlayer" loop style="display:none;"></audio>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    // ============================================
+    // ANIMASI KOTAK
+    // ============================================
+    const kotak1 = document.getElementById('kotak1');
+    const kotak2 = document.getElementById('kotak2');
+    const kotak3 = document.getElementById('kotak3');
+
+    window.addEventListener('load', () => {
+      setTimeout(() => { kotak1.style.transform = 'scale(1)'; }, 200);
+      setTimeout(() => { kotak2.style.transform = 'scale(1)'; }, 400);
+      setTimeout(() => { kotak3.style.transform = 'scale(1)'; }, 600);
+    });
+
+    kotak1.addEventListener('mouseenter', () => {
+      kotak1.style.transform = 'scale(1.05) translateY(-10px)';
+      kotak1.style.boxShadow = '0 30px 80px rgba(0, 0, 0, 0.4)';
+    });
+
+    kotak1.addEventListener('mouseleave', () => {
+      kotak1.style.transform = 'scale(1) translateY(0)';
+      kotak1.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.3)';
+    });
+
+    kotak2.addEventListener('mouseenter', () => {
+      kotak2.style.transform = 'scale(1.05) translateY(-10px)';
+      kotak2.style.boxShadow = '0 30px 80px rgba(0, 0, 0, 0.4)';
+    });
+
+    kotak2.addEventListener('mouseleave', () => {
+      kotak2.style.transform = 'scale(1) translateY(0)';
+      kotak2.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.3)';
+    });
+
+    kotak3.addEventListener('mouseenter', () => {
+      kotak3.style.transform = 'scale(1.05) translateY(-10px)';
+      kotak3.style.boxShadow = '0 30px 80px rgba(0, 0, 0, 0.4)';
+    });
+
+    kotak3.addEventListener('mouseleave', () => {
+      kotak3.style.transform = 'scale(1) translateY(0)';
+      kotak3.style.boxShadow = '0 20px 60px rgba(0, 0, 0, 0.3)';
+    });
+
+    // ============================================
+    // MUSIK - AUTO PLAY SAAT INTERAKSI PERTAMA
+    // ============================================
+    const audio = document.getElementById('audioPlayer');
+    const speakerBtn = document.getElementById('speakerBtn');
+
+    const songFile = "memories.mp3";
+    let isPlaying = false;
+    let audioStarted = false;
+
+    audio.src = songFile;
+    audio.loop = true;
+
+    // Fungsi mulai audio (pertama kali)
+    function startAudio() {
+      if (audioStarted) return;
+
+      audio.play()
+        .then(() => {
+          isPlaying = true;
+          audioStarted = true;
+          speakerBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+          speakerBtn.classList.remove('muted');
+          speakerBtn.classList.add('playing');
+          console.log('🔊 Musik mulai diputar!');
+        })
+        .catch((err) => {
+          console.log('❌ Gagal play:', err);
+        });
+    }
+
+    // Fungsi toggle ON/OFF
+    function togglePlayPause() {
+      if (!audioStarted) {
+        startAudio();
+        return;
+      }
+
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        speakerBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        speakerBtn.classList.remove('playing');
+        speakerBtn.classList.add('muted');
+        console.log('🔇 Musik dimatikan');
+      } else {
+        audio.play()
+          .then(() => {
+            isPlaying = true;
+            speakerBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+            speakerBtn.classList.remove('muted');
+            speakerBtn.classList.add('playing');
+            console.log('🔊 Musik dinyalakan');
+          })
+          .catch((err) => {
+            console.log('❌ Gagal play:', err);
+          });
+      }
+    }
+
+    // ============================================
+    // EVENT LISTENERS
+    // ============================================
+
+    // Klik pertama di mana saja (selain tombol speaker) untuk memulai musik
+    document.addEventListener('click', function firstClick(e) {
+      if (!audioStarted && !e.target.closest('.speaker-btn')) {
+        startAudio();
+        document.removeEventListener('click', firstClick);
+      }
+    });
+
+    // Sentuhan pertama di mana saja (untuk mobile)
+    document.addEventListener('touchstart', function firstTouch(e) {
+      if (!audioStarted && !e.target.closest('.speaker-btn')) {
+        startAudio();
+        document.removeEventListener('touchstart', firstTouch);
+      }
+    });
+
+    // Tombol speaker
+    speakerBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      togglePlayPause();
+    });
+
+    // ============================================
+    // HENTIKAN MUSIK SAAT PAGE DITUTUP
+    // ============================================
+    window.addEventListener('beforeunload', function() {
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        isPlaying = false;
+      }
+    });
+
+    // Hentikan musik saat tab tidak aktif
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden && isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        speakerBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        speakerBtn.classList.remove('playing');
+        speakerBtn.classList.add('muted');
+      }
+    });
+
+    console.log('🎌 Nihongo Quest siap!');
+    console.log('🔊 Klik di mana saja untuk memulai musik');
+    console.log('🎵 File musik: memories.mp3');
+  </script>
+</body>
+</html>

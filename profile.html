@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile pembuat web - Fabyan Althaf Syakir</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0c0c1d, #1a1a2e, #16213e);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            color: #ffffff;
+        }
+
+        /* Background overlay */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 107, 107, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(78, 205, 196, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ============================================
+           TOMBOL KEMBALI KE HOME
+           ============================================ */
+        .back-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            color: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            padding: 80px 20px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 107, 107, 0.15);
+            color: #ff6b6b;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 20px;
+            border-radius: 30px;
+            letter-spacing: 1px;
+            border: 1px solid rgba(255, 107, 107, 0.2);
+            margin-bottom: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Kontak Info di bawah nama - HANYA TAMPILAN */
+        .hero-contact {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .contact-item-display {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .contact-item-display i {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-item-display .insta-color {
+            color: #E4405F;
+        }
+
+        .contact-item-display .wa-color {
+            color: #25D366;
+        }
+
+        .contact-item-display .email-color {
+            color: #EA4335;
+        }
+
+        .hero-line {
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+            margin: 10px auto 30px;
+            border-radius: 4px;
+        }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px 20px;
+        }
+
+        .about-text {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .about-text strong {
+            color: #ff6b6b;
+        }
+
+        .about-hobbies {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 5px;
+        }
+
+        .hobby-tag {
+            padding: 8px 22px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .hobby-tag:hover {
+            background: rgba(255, 107, 107, 0.1);
+            border-color: rgba(255, 107, 107, 0.2);
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           BIRTHDAY & EDUCATION
+           ============================================ */
+        .info-container {
+            max-width: 800px;
+            margin: 20px auto 0;
+            padding: 10px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 20px 25px;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 107, 107, 0.12);
+            transform: translateY(-3px);
+        }
+
+        .info-card .info-icon {
+            font-size: 1.3rem;
+            color: #ff6b6b;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+
+        .info-card h4 {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .info-card p {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .education-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .education-list li {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+            padding: 4px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .education-list li:last-child {
+            border-bottom: none;
+        }
+
+        .education-list li .year {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.7rem;
+            font-weight: 600;
+            min-width: 85px;
+        }
+
+        .education-list li .school {
+            color: #ffffff;
+        }
+
+        /* ============================================
+           SECTION UMUM
+           ============================================ */
+        .section {
+            padding: 60px 20px 80px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-dark {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 18px;
+            border-radius: 30px;
+            letter-spacing: 2px;
+            border: 1px solid rgba(255, 107, 107, 0.15);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .section-title .highlight {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+            margin: 0 auto;
+            border-radius: 4px;
+        }
+
+        /* ============================================
+           KEHLIAN - 6 KOLOM
+           ============================================ */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            padding: 25px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .skill-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 107, 107, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #ff6b6b;
+        }
+
+        .skill-card h4 {
+            font-size: 0.95rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           SERTIFIKAT & ACHIEVEMENT
+           ============================================ */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cert-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 107, 107, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .cert-image {
+            width: 100%;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .cert-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cert-info {
+            padding: 18px 20px;
+        }
+
+        .cert-info h4 {
+            font-size: 0.95rem;
+            color: #ffffff;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .cert-info p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 8px;
+        }
+
+        .cert-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 4px 12px;
+            background: rgba(255, 107, 107, 0.1);
+            color: #ff6b6b;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 107, 107, 0.1);
+        }
+
+        /* ============================================
+           SOSIAL MEDIA & KONTAK (PALING BAWAH)
+           ============================================ */
+        .social-section {
+            padding: 40px 20px 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .social-container h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .social-container h2 .highlight {
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .social-container p {
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-icon-link {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon-link:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .social-icon-link.instagram:hover {
+            background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 8px 30px rgba(225, 48, 108, 0.3);
+        }
+
+        .social-icon-link.whatsapp:hover {
+            background: #25D366;
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.3);
+        }
+
+        .social-icon-link.email:hover {
+            background: #EA4335;
+            color: #ffffff;
+            border-color: transparent;
+            box-shadow: 0 8px 30px rgba(234, 67, 53, 0.3);
+        }
+
+        .social-label {
+            display: block;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.3);
+            margin-top: 6px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .social-item {
+            text-align: center;
+        }
+
+        /* ============================================
+           BONUS: KOTAK TEKS STATIS
+           ============================================ */
+        .wish-section {
+            padding: 30px 20px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .wish-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .wish-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .wish-box:hover {
+            border-color: rgba(255, 107, 107, 0.15);
+        }
+
+        .wish-box-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .wish-box-header i {
+            font-size: 1.5rem;
+            color: #ff6b6b;
+        }
+
+        .wish-box-header h3 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .wish-text-static {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding: 20px;
+            background: rgba(255, 107, 107, 0.05);
+            border-radius: 12px;
+            border: 1px dashed rgba(255, 107, 107, 0.15);
+            letter-spacing: 0.5px;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            padding: 25px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+            .certificates-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .info-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-home {
+                top: 15px;
+                left: 15px;
+                padding: 10px 18px;
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                padding: 70px 20px 30px;
+                min-height: auto;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-contact {
+                gap: 15px;
+                padding: 8px 15px;
+                flex-wrap: wrap;
+            }
+
+            .contact-item-display {
+                font-size: 0.7rem;
+                gap: 5px;
+            }
+
+            .contact-item-display i {
+                font-size: 0.9rem;
+            }
+
+            .about-text {
+                font-size: 0.95rem;
+                line-height: 1.8;
+            }
+
+            .about-hobbies {
+                gap: 10px;
+            }
+
+            .hobby-tag {
+                padding: 6px 16px;
+                font-size: 0.8rem;
+            }
+
+            .info-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .info-card {
+                padding: 15px 18px;
+            }
+
+            .education-list li {
+                font-size: 0.8rem;
+                flex-wrap: wrap;
+            }
+
+            .education-list li .year {
+                min-width: 70px;
+                font-size: 0.65rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .certificates-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .social-icon-link {
+                width: 55px;
+                height: 55px;
+                font-size: 1.5rem;
+            }
+
+            .social-icons {
+                gap: 20px;
+            }
+
+            .wish-box {
+                padding: 20px;
+            }
+
+            .social-container h2 {
+                font-size: 1.6rem;
+            }
+
+            .wish-text-static {
+                font-size: 1rem;
+                padding: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .back-home {
+                top: 12px;
+                left: 12px;
+                padding: 8px 14px;
+                font-size: 0.7rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-contact {
+                gap: 10px;
+                padding: 6px 12px;
+                border-radius: 12px;
+            }
+
+            .contact-item-display {
+                font-size: 0.6rem;
+                gap: 4px;
+            }
+
+            .contact-item-display i {
+                font-size: 0.8rem;
+            }
+
+            .hero-badge {
+                font-size: 0.65rem;
+                padding: 4px 14px;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .skill-card {
+                padding: 18px 14px;
+            }
+
+            .skill-card h4 {
+                font-size: 0.8rem;
+            }
+
+            .skill-icon {
+                font-size: 1.6rem;
+            }
+
+            .social-icon-link {
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
+            }
+
+            .social-label {
+                font-size: 0.6rem;
+            }
+
+            .cert-info h4 {
+                font-size: 0.85rem;
+            }
+
+            .social-icons {
+                gap: 15px;
+            }
+
+            .wish-text-static {
+                font-size: 0.9rem;
+                padding: 12px;
+            }
+
+            .education-list li {
+                font-size: 0.75rem;
+            }
+
+            .education-list li .year {
+                min-width: 60px;
+                font-size: 0.6rem;
+            }
+        }
+
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                padding: 60px 20px 20px;
+                min-height: auto;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .hero-contact {
+                gap: 12px;
+                padding: 6px 15px;
+            }
+
+            .contact-item-display {
+                font-size: 0.65rem;
+            }
+
+            .section {
+                padding: 30px 20px 40px;
+            }
+
+            .info-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Overlay -->
+    <div class="bg-overlay"></div>
+
+    <!-- ========== TOMBOL KEMBALI KE HOME ========== -->
+    <a href="index.html" class="back-home">
+        <i class="fas fa-arrow-left"></i> Kembali ke Home
+    </a>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section class="hero">
+        <span class="hero-badge">🌸 いらっしゃいませ</span>
+        <h1 class="hero-title">
+            Fabyan <span class="highlight">Althaf Syakir</span>
+        </h1>
+
+        <!-- Kontak Info - HANYA TAMPILAN (tidak bisa diklik) -->
+        <div class="hero-contact">
+            <span class="contact-item-display">
+                <i class="fab fa-instagram insta-color"></i> @_abcdefbyn
+            </span>
+            <span class="contact-item-display">
+                <i class="fab fa-whatsapp wa-color"></i> +6283896327091
+            </span>
+            <span class="contact-item-display">
+                <i class="fas fa-envelope email-color"></i> fabyanalthafs@gmail.com
+            </span>
+        </div>
+
+        <div class="hero-line"></div>
+
+        <!-- About Me -->
+        <div class="about-container">
+            <p class="about-text">
+                <strong>👋 Halo!</strong> Saya Fabyan Althaf Syakir, Saya seorang remaja yang memiliki <strong>sejuta mimpi</strong>.
+                Dengan masalah dan kekurangan yang ada saya akan <strong>tetap bertahan</strong> hingga mimpi itu berhasil digapai.
+            </p>
+            <p class="about-text" style="margin-top: -5px;">
+                <strong>🎯 Hobi Saya:</strong>
+            </p>
+            <div class="about-hobbies">
+                <span class="hobby-tag">🎬 Menonton Film</span>
+                <span class="hobby-tag">🎧 Mendengar Musik</span>
+                <span class="hobby-tag">🏃 Jogging</span>
+            </div>
+        </div>
+
+        <!-- Birthday & Education -->
+        <div class="info-container">
+            <div class="info-card">
+                <span class="info-icon">🎂</span>
+                <h4>Tempat Tanggal Lahir</h4>
+                <p>Bekasi 3 November 2006</p>
+            </div>
+            <div class="info-card">
+                <span class="info-icon">🎓</span>
+                <h4>Pendidikan</h4>
+                <ul class="education-list">
+                    <li><span class="year">2013 - 2019</span><span class="school">SD DEBONG TENGAH 2</span></li>
+                    <li><span class="year">2019 - 2022</span><span class="school">SMP 5 KOTA TEGAL</span></li>
+                    <li><span class="year">2022 - 2025</span><span class="school">SMK YPT KOTA TEGAL</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== KEHLIAN ========== -->
+    <section class="section section-dark">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">💡 Skills</span>
+                <h2 class="section-title">Keahlian <span class="highlight">Saya</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-language"></i></div>
+                    <h4>Nihongo N4</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-code"></i></div>
+                    <h4>Pemrograman Dasar</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-file-alt"></i></div>
+                    <h4>Microsoft Office</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-utensils"></i></div>
+                    <h4>Memasak</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-feather-alt"></i></div>
+                    <h4>Membuat Cerita</h4>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+                    <h4>Desain Grafis</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERTIFIKAT & ACHIEVEMENT ========== -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">🏆 Achievement</span>
+                <h2 class="section-title">Sertifikat & <span class="highlight">Prestasi</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="certificates-grid">
+
+                <div class="cert-card">
+                    <div class="cert-image">
+                        <img src="sertiflks2.jpg" alt="Juara 2 LKS 2024">
+                    </div>
+                    <div class="cert-info">
+                        <h4>Juara 2 LKS IT Software Solutions for Business</h4>
+                        <p>Tingkat Kota Tegal - 2024</p>
+                        <span class="cert-badge">🥈 Sertifikat</span>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-image">
+                        <img src="sertilks1.jpg" alt="Juara 1 LKS 2025">
+                    </div>
+                    <div class="cert-info">
+                        <h4>Juara 1 LKS IT Software Solutions for Business</h4>
+                        <p>Tingkat Kota Tegal - 2025</p>
+                        <span class="cert-badge">🥇 Sertifikat</span>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-image">
+                        <img src="sertifn5.jpg" alt="Sertifikat JLPT N5">
+                    </div>
+                    <div class="cert-info">
+                        <h4>Lulus Bahasa Jepang N5</h4>
+                        <p>Standar LPK - 2024</p>
+                        <span class="cert-badge">📜 Sertifikat</span>
+                    </div>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-image">
+                        <img src="sertifpkl.jpg" alt="Sertifikat PKL DRTJ">
+                    </div>
+                    <div class="cert-info">
+                        <h4>Sertifikat PKL</h4>
+                        <p>DRTJ Digital Institute - 2024</p>
+                        <span class="cert-badge">📜 Sertifikat</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BONUS: KOTAK TEKS STATIS ========== -->
+    <section class="wish-section">
+        <div class="wish-container">
+            <div class="wish-box">
+                <div class="wish-box-header">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Info Penting</h3>
+                </div>
+                <div class="wish-text-static">
+                    🚀 Saya butuh info loker secepatnya
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SOSIAL MEDIA & KONTAK (PALING BAWAH) ========== -->
+    <section class="social-section section-dark">
+        <div class="social-container">
+            <h2>Hubungi <span class="highlight">Saya</span></h2>
+            <p>Klik ikon di bawah ini untuk terhubung dengan saya</p>
+            <div class="social-icons">
+                <div class="social-item">
+                    <a href="https://www.instagram.com/_abcdefbyn" target="_blank" class="social-icon-link instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <span class="social-label">Instagram</span>
+                </div>
+                <div class="social-item">
+                    <a href="https://wa.me/6283896327091" target="_blank" class="social-icon-link whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <span class="social-label">WhatsApp</span>
+                </div>
+                <div class="social-item">
+                    <a href="mailto:fabyanalthafs@gmail.com" target="_blank" class="social-icon-link email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <span class="social-label">Email</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <p>&copy; 2026 Fabyan Althaf Syakir. All Rights Reserved.</p>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ============================================
+        // 1. ANIMASI SKILL CARD SAAT SCROLL
+        // ============================================
+        const skillCards = document.querySelectorAll('.skill-card');
+
+        function animateSkills() {
+            skillCards.forEach((card, index) => {
+                const rect = card.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+
+                if (rect.top < windowHeight * 0.85) {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 150);
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateSkills);
+        setTimeout(animateSkills, 300);
+    </script>
+
+</body>
+</html>

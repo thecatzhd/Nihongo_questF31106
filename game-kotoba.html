@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tebak Kosakata Jepang</title>
+    <link rel="stylesheet" href="game-kotoba.css">
+</head>
+<body>
+    <!-- Overlay untuk efek background -->
+    <div class="bg-overlay"></div>
+
+    <!-- Start Screen -->
+    <div id="start-screen" class="start-screen">
+        <div class="start-content">
+            <span class="start-badge">🎮 ゲーム</span>
+            <h1>Tebak <span class="highlight">Kosakata</span></h1>
+            <p class="start-desc">✨ Uji pengetahuan kosakata Jepangmu! ✨</p>
+            <button id="start-button" class="start-button">▶ Mulai Game</button>
+            <div class="start-home-buttons">
+                <a href="./home-kotoba.html" class="start-home-btn">← Menu Kotoba</a>
+                <a href="./index.html" class="start-home-btn">🏠Menu utama</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Container -->
+    <div id="game-container" class="game-container">
+        <!-- Header Game -->
+        <div class="game-header">
+            <div class="game-title">🎯 Tebak Kosakata</div>
+            <div class="game-stats">
+                <span class="stat-item">
+                    <span class="stat-icon">❤️</span>
+                    <span id="lives-container" class="lives-display">❤️❤️❤️❤️❤️</span>
+                </span>
+                <span class="stat-item">
+                    <span class="stat-icon">⭐</span>
+                    <span id="exp" class="stat-value">0</span>
+                </span>
+                <span class="stat-item">
+                    <span class="stat-icon">📊</span>
+                    <span id="level" class="stat-value">1</span>
+                </span>
+                <span class="stat-item">
+                    <span class="stat-icon">✅</span>
+                    <span id="correct" class="stat-value">0</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Timer -->
+        <div class="timer-wrapper">
+            <div class="timer-item" id="timer">
+                ⏱️ <span class="timer-number">10</span>s
+            </div>
+            <div class="timer-item" id="healing-timer" style="display:none;">
+                💚 Pulih: <span id="healing-count">60</span>s
+            </div>
+        </div>
+
+        <!-- Character Display -->
+        <div class="character-container" id="character-display">?</div>
+
+        <!-- Options -->
+        <div class="options-container" id="options-container"></div>
+
+        <!-- Result -->
+        <div class="result" id="result"></div>
+
+        <!-- Progress Bar EXP -->
+        <div class="exp-bar-container">
+            <div class="exp-bar-label">
+                <span>EXP</span>
+                <span id="exp-progress-text">0 / 50</span>
+            </div>
+            <div class="exp-bar">
+                <div class="exp-bar-fill" id="exp-bar-fill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Restart Button -->
+        <button id="restart-button" class="restart-btn">🔄 Ulangi Game</button>
+
+        <!-- Home Buttons -->
+        <div class="game-home-buttons">
+            <a href="./home-kotoba.html" class="home-btn">← Menu kotoba</a>
+            <a href="./index.html" class="home-btn">🏠Menu utama</a>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Load Data Kosakata dari kotoba.js -->
+    <script src="kotoba.js"></script>
+    <script src="game-kotoba.js"></script>
+</body>
+</html>
